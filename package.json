@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "scripts": {
     "build": "turbo run build",
-    "clean": "rm -rf packages/package-c",
+    "build:clean": "find . -type f -name 'index.js' -delete",
+    "build:selective": "pnpm dlx turbo run build --filter=\"[HEAD]\" --dry-run=json | jq -c '.packages'",
+    "clean": "rm -rf packages/package-c && pnpm run build:clean",
     "__create_package": "cp -r package-c packages",
     "prereproduce-issue": "pnpm clean && pnpm __create_package && pnpm i",
     "reproduce-issue": "pnpm dlx turbo run build --filter=\"[HEAD]\" --dry-run=json | jq -c '.packages'"
