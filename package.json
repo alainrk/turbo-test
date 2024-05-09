@@ -1,11 +1,15 @@
 {
-    "name": "monorepo",
-    "version": "1.0.0",
-    "scripts": {
-        "build": "turbo run build"
-    },
-    "devDependencies": {
-        "@changesets/cli": "2.27.1",
-        "turbo": "1.13.3"
-    }
+  "name": "monorepo",
+  "version": "1.0.0",
+  "scripts": {
+    "build": "turbo run build",
+    "clean": "rm -rf packages/package-c",
+    "__create_package": "cp -r package-c packages",
+    "prereproduce-issue": "pnpm clean && pnpm __create_package && pnpm i",
+    "reproduce-issue": "pnpm dlx turbo run build --filter=\"[HEAD]\" --dry-run=json | jq -c '.packages'"
+  },
+  "devDependencies": {
+    "@changesets/cli": "2.27.1",
+    "turbo": "1.13.3"
+  }
 }
