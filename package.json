@@ -1,6 +1,7 @@
 {
   "name": "monorepo",
   "version": "1.0.0",
+  "private": true,
   "scripts": {
     "prebuild": "pnpm i",
     "build": "turbo run build",
