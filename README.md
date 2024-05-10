@@ -5,12 +5,12 @@
 The following script will:
 
 - Clean everything up (node_modules, previous runs outputs, etc.)
-- Create a new package `package-c` out of a template
-- Install the packages
-- Runs the turbo build command with the filter option `--filter [HEAD]` so to filter out everything else is not the unstaged changes
+- Create a new workspace `package-c` out of a template
+- Install the npm packages
+- Runs the turbo build command with the filter option `--filter [HEAD]` so to filter between the unstaged changes and HEAD
 
 ```sh
-npm run reproduce-issue
+pnpm run reproduce-issue
 ```
 
 - Expected output: `["package-c"]`
