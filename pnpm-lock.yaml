@@ -27,12 +27,6 @@ importers:
         specifier: 5.4.5
         version: 5.4.5
 
-  packages/package-c:
-    devDependencies:
-      typescript:
-        specifier: 5.4.5
-        version: 5.4.5
-
 packages:
 
   '@babel/code-frame@7.24.2':
