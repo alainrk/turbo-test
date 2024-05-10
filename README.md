@@ -1,21 +1,17 @@
 # Turborepo --filter issue replication
 
-### Adding a new package without dependencies:
+## How to reproduce
 
-```bash
-pnpm dlx turbo run build --filter="[__FIRST_COMMIT__...__SECOND_COMMIT__]" --filter='!//' --dry-run=json | jq -c '.packages'
+The following script will:
+
+- Clean everything up (node_modules, previous runs outputs, etc.)
+- Create a new package `package-c` out of a template
+- Install the packages
+- Runs the turbo build command with the filter option `--filter [HEAD]` so to filter out everything else is not the unstaged changes
+
+```sh
+npm run reproduce-issue
 ```
 
-> Output: `["package-c"]`
-
-Correct
-
-### Adding a package with dependencies
-
-```bash
-pnpm dlx turbo run build --filter="[__FIRST_COMMIT__...__SECOND_COMMIT__]" --filter='!//' --dry-run=json | jq -c '.packages'
-```
-
-> Output: `["package-a","package-b","package-c"]`
-
-_Wrong_ - Should be only `["package-c"]`
+- Expected output: `["package-c"]`
+- Actual output: `["package-a","package-b","package-c"]`
