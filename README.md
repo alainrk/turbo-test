@@ -15,3 +15,8 @@ npm run reproduce-issue
 
 - Expected output: `["package-c"]`
 - Actual output: `["package-a","package-b","package-c"]`
+
+### Notes:
+
+- It doesn't work with the canary release either, i.e. running `pnpm dlx turbo@canary run build --filter=\"[HEAD]\" --filter='!//' --dry-run=json | jq -c '.packages'`
+- The package manager used is pnpm@9.0.6
